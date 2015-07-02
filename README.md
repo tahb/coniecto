@@ -1,6 +1,6 @@
 # Wat?
 
-After reading into some different approaches to OO design, I threw this game together without a preconcieved idea just to see how the approach would handl constant change.
+After reading into some different approaches to OO design, I threw this game together without a preconcieved idea just to see how the approach of small objects and depenency management would handle constant change.
 
 Turns out it was, great fun.
 
