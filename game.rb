@@ -1,6 +1,5 @@
-require 'pry'
-
 class Game
+  
   attr_accessor :player_set, :limit
   attr_reader :target
 
@@ -9,18 +8,21 @@ class Game
     @target = Random.rand(@limit)
     @difficulty = args[:difficulty] || Random.rand(5)
 
-    print_game_info
-
     @player_set = PlayerSet.new(players: args[:players])
     @player_set.balance
     @player_set.prioritize
+    
+    print_game_info
   end
 
   def play
-    result = Result.new(game: self, guesses: player_set.guesses)
     result.print
   end
-
+  
+  def result
+    @result ||= Result.new(game: self, guesses: player_set.guesses)  
+  end
+  
   def print_game_info
     puts "*****************************************************"
     puts "Guess the number. Closest wins."
