@@ -12,6 +12,8 @@ Turns out it was great fun and easy.
 
 ## Have a try
 
+First make sure you have and are running Ruby 2.2.0.
+
 ```
 $ irb
 ```

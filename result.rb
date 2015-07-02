@@ -1,5 +1,3 @@
-require 'pry'
-
 class Result
   attr_reader :guesses, :game
 
