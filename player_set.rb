@@ -35,9 +35,9 @@ class PlayerSet
     @prioritised_players ||= players.sort{ |a,b| a.priority <=> b.priority }
   end
 
-  def guesses
+  def guesses(limit)
     prioritised_players.inject([]) do |array, player|
-      array << Guess.new(player: player, number: player.guess, error_margin: player.error_margin)
+      array << Guess.new(player: player, number: player.guess(limit), error_margin: player.error_margin)
       array
     end
   end

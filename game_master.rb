@@ -1,5 +1,3 @@
-require 'pry'
-
 class GameMaster
 
   attr_accessor = :game
@@ -17,7 +15,7 @@ class GameMaster
       players: [
         Person.new(name: "Tom", rank: 1),
         Person.new(name: "Mark", rank: 2),
-        Person.new(name: "BoB", rank: 3),
+        Bot.new(name: "BoB", rank: 3),
       ],
       limit: 125
     ).play

@@ -1,7 +1,7 @@
 class Bot < Player
 
-  def guess
-    guess = Random.rand
+  def guess(limit)
+    guess = Random.rand(limit)
     puts "Bot #{name} guessed: "
     puts guess
     return guess
