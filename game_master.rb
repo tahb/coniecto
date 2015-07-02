@@ -12,13 +12,15 @@ class GameMaster
     game.play
   end
 
+  def self.example
+    GameMaster.setup(
+      players: [
+        Person.new(name: "Tom", rank: 1),
+        Person.new(name: "Mark", rank: 2),
+        Person.new(name: "BoB", rank: 3),
+      ],
+      limit: 125
+    ).play
+  end
 end
 
-GameMaster.setup(
-  players: [
-    Person.new(name: "Tom", rank: 1),
-    Person.new(name: "Mark", rank: 2),
-    Person.new(name: "BoB", rank: 3),
-  ],
-  limit: 125
-).play

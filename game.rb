@@ -17,8 +17,8 @@ class Game
   end
 
   def play
-    result = Result.new(game: self, guesses: player_set.guesses).winners
-    binding.pry
+    result = Result.new(game: self, guesses: player_set.guesses)
+    result.print
   end
 
   def print_game_info
