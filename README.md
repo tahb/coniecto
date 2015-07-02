@@ -26,7 +26,14 @@ Customise your own game by specifying the players involved and the maximum guess
 Don't worry if you're on your own, you can play against a bot!
 
 ```
-$ GameMaster.new(players: [Player.new], limit: 125)
+$   Game.new(
+      players: [
+        Human.new(name: "Tom", rank: 1),
+        Human.new(name: "Mark", rank: 2),
+        Bot.new(name: "BoB", rank: 3),
+      ],
+      limit: 125
+    ).play
 ```
 
 ## Ranks
