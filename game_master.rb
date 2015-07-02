@@ -13,7 +13,7 @@ class GameMaster
   end
 
   def self.example
-    GameMaster.setup(
+    Game.new(
       players: [
         Person.new(name: "Tom", rank: 1),
         Person.new(name: "Mark", rank: 2),
