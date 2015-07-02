@@ -15,12 +15,14 @@ class Game
 
   def play
     print_game_info
-    guesses
+    results
     print_result
   end
 
-  def guesses
-    @guesses ||= player_set.guesses(limit)
+  def print_game_info
+    puts "*****************************************************"
+    puts "Guess the number. Closest wins."
+    puts "*****************************************************"
   end
 
   def results
@@ -31,10 +33,8 @@ class Game
     results.print
   end
 
-  def print_game_info
-    puts "*****************************************************"
-    puts "Guess the number. Closest wins."
-    puts "*****************************************************"
+  private def guesses
+    @guesses ||= player_set.guesses(limit)
   end
 
 end
