@@ -64,7 +64,7 @@ class Result
     elsif winners.count.eql?(1)
       feedback = "#{winners.first.name} wins!"
     else
-      feedback = "The winners are..#{winners.each{|winner| winner.name}}"
+      feedback = "The winners are.. #{ winners.collect{|winner| winner.name }.join(', ')}"
     end
 
     puts feedback

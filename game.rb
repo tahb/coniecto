@@ -11,10 +11,11 @@ class Game
     @player_set.balance
     @player_set.prioritize
 
-    print_game_info
   end
 
   def play
+    print_game_info
+
     result.print
   end
 
