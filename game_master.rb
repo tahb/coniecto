@@ -1,0 +1,24 @@
+require 'pry'
+
+class GameMaster
+
+  attr_accessor = :game
+
+  def self.setup(args)
+    @game = Game.new(args)
+  end
+
+  def play
+    game.play
+  end
+
+end
+
+GameMaster.setup(
+  players: [
+    Person.new(name: "Tom", rank: 1),
+    Person.new(name: "Mark", rank: 2),
+    Person.new(name: "BoB", rank: 3),
+  ],
+  limit: 125
+).play
