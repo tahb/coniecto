@@ -8,23 +8,29 @@ class Result
     @game = args[:game]
   end
 
-  # TODO
   def winners
-    @winners ||= determine_winners_by_exact_match
+    @winners ||=
+    if determine_winners_by_exact_match.any?
+      determine_winners_by_exact_match
+    elsif determine_winners_with_margin.any?
+      determine_winners_with_margin
+    end
+    # TODO
+    # return determine_winners_by_closest if determine_winners_by_closest.any?
   end
 
   # Good place to fix. Loops within loops.
   def determine_winners_by_exact_match
-    guesses.inject([]) do |array, guess|
+    @determine_winners_by_exact_match ||= guesses.inject([]) do |array, guess|
       array << guess.player if guess.number == target
       array
     end
   end
 
   # TODO
-  def determine_winners_by_margin
+  def determine_winners_with_margin
     guesses.inject([]) do |array, guess|
-      array << guess.player if guess.full_range.include?(guess.number)
+      array << guess.player if guess.full_range.include?(target)
       array
     end
   end
@@ -51,9 +57,9 @@ class Result
     game.target
   end
 
-  # TODO
   def print
-    if winners.empty?
+    puts "The answer was: #{target}"
+    if !winners
       feedback = "No winners this time"
     elsif winners.count.eql?(1)
       feedback = "#{winners.first.name} wins!"

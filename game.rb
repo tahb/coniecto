@@ -19,7 +19,7 @@ class Game
   end
 
   def guesses
-    player_set.guesses(limit)
+    @guesses ||= player_set.guesses(limit)
   end
 
   def result
