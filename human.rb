@@ -1,4 +1,4 @@
-class Person < Player
+class Human < Player
 
   def guess(*)
     puts "What's your guess #{name}?"

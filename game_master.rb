@@ -13,8 +13,8 @@ class GameMaster
   def self.example
     Game.new(
       players: [
-        Person.new(name: "Tom", rank: 1),
-        Person.new(name: "Mark", rank: 2),
+        Human.new(name: "Tom", rank: 1),
+        Human.new(name: "Mark", rank: 2),
         Bot.new(name: "BoB", rank: 3),
       ],
       limit: 125
