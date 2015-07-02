@@ -15,16 +15,20 @@ class Game
 
   def play
     print_game_info
-
-    result.print
+    guesses
+    print_result
   end
 
   def guesses
     @guesses ||= player_set.guesses(limit)
   end
 
-  def result
-    @result ||= Result.new(game: self, guesses: guesses)
+  def results
+    @results ||= Result.new(game: self, guesses: guesses)
+  end
+
+  def print_result
+    results.print
   end
 
   def print_game_info

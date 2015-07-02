@@ -26,14 +26,16 @@ Customise your own game by specifying the players involved and the maximum guess
 Don't worry if you're on your own, you can play against a bot!
 
 ```
-$   Game.new(
+$   game = Game.new(
       players: [
         Human.new(name: "Tom", rank: 1),
         Human.new(name: "Mark", rank: 2),
         Bot.new(name: "BoB", rank: 3),
       ],
       limit: 125
-    ).play
+    )
+
+    game.play
 ```
 
 ## Ranks
