@@ -1,5 +1,3 @@
-require 'pry'
-
 class Result
   attr_reader :guesses, :game
   attr_accessor :by_match, :by_margin, :by_closest, :by_closest

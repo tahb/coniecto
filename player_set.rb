@@ -63,7 +63,7 @@ class PlayerSet
     prioritize_remainder
   end
 
-  private def prioritize_remainder
+  def prioritize_remainder
     return if remaining_players.empty?
     remaining_players.each do |player|
       player.priority = amount
