@@ -8,29 +8,31 @@ class Game
     @target = Random.rand(@limit)
 
     @player_set = PlayerSet.new(players: args[:players])
-    @player_set.balance
-    @player_set.prioritize
-
+    @player_set.balance # Balancer.call(player_set: []) - quack so it can balance anything
+    @player_set.prioritize # Prioitizer.call(player_set: [])
   end
 
   def play
     print_game_info
-    results
-    print_result
+    winners = result.winners
+    print_game_target
+    winners.print
   end
 
-  def print_game_info
+  private def print_game_info
     puts "*****************************************************"
     puts "Guess the number. Closest wins."
     puts "*****************************************************"
   end
 
-  def results
-    @results ||= Result.new(game: self, guesses: guesses)
+  private def print_game_target
+    puts "*****************************************************"
+    puts "The number you had to guess was #{target}!"
+    puts "*****************************************************"
   end
 
-  def print_result
-    results.print
+  private def result
+    @result ||= Result.new(game: self, guesses: guesses)
   end
 
   private def guesses

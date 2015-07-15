@@ -1,3 +1,4 @@
+require "./winners.rb"
 require "./guess.rb"
 require "./player.rb"
 require "./game.rb"

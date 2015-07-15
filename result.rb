@@ -2,72 +2,56 @@ require 'pry'
 
 class Result
   attr_reader :guesses, :game
+  attr_accessor :by_match, :by_margin, :by_closest, :by_closest
+
+  WINNING_ORDER = [ :by_match, :by_margin, :by_closest ].freeze
 
   def initialize(args)
     @guesses = args[:guesses] || []
     @game = args[:game]
+    @by_match = []
+    @by_margin = []
+    @by_closest = []
+
+    calculate_winners
   end
 
   def winners
-    @winners ||=
-    if determine_winners_by_exact_match.any?
-      determine_winners_by_exact_match
-    elsif determine_winners_with_margin.any?
-      determine_winners_with_margin
-    end
-    # TODO
-    # return determine_winners_by_closest if determine_winners_by_closest.any?
-  end
-
-  # Good place to fix. Loops within loops.
-  def determine_winners_by_exact_match
-    @determine_winners_by_exact_match ||= guesses.inject([]) do |array, guess|
-      array << guess.player if guess.number == target
-      array
+    WINNING_ORDER.each do |type|
+      return Winners.new(type: type, guesses: self.send(type)) unless self.send(type).empty?
     end
   end
 
-  # TODO
-  def determine_winners_with_margin
-    guesses.inject([]) do |array, guess|
-      array << guess.player if guess.full_range.include?(target)
-      array
-    end
-  end
-
-  # TODO
-  def determine_winners_by_closest
-    differences = []
+  private def calculate_winners
     guesses.each do |guess|
-      differences << differences_for(guess)
+      by_match << guess if guess.number == target
+      by_margin << guess if guess.full_range.include?(target)
+      set_closest(guess)
     end
   end
 
-  def differences_for(guess)
-    if guess.number > target
-      guess.number - target
-    elsif guess.number < target
-      target - guess.number
+  private def closer_guess?(guess)
+    return true if by_closest.nil?
+    (target - guess.number) < (target - by_closest.number)
+  end
+
+  # Ew.
+  private def set_closest(guess)
+    if by_closest.empty?
+      by_closest << guess
+      return true
     else
-      0
+      new_diff = target - guess.number
+      old_diff = target - by_closest.first.number
+
+      by_closest << guess if new_diff == old_diff
+      by_closest = [ guess ] if new_diff < old_diff
     end
+
   end
 
-  def target
+  private def target
     game.target
-  end
-
-  def print
-    puts "The answer was: #{target}"
-    if !winners
-      feedback = "No winners this time"
-    elsif winners.count.eql?(1)
-      feedback = "#{winners.first.name} wins!"
-    else
-      feedback = "The winners are.. #{ winners.collect{|winner| winner.name }.join(', ')}"
-    end
-
-    puts feedback
   end
 
 end
