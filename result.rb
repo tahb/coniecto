@@ -42,7 +42,7 @@ class Result
     by_marginal << guess if guess.full_range.include?(target)
   end
 
-  # Ew.
+  # TODO - Ew.
   private def set_closest(guess)
 
     if by_closest.empty? or by_closest.nil?
