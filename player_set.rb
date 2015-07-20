@@ -16,7 +16,7 @@ class PlayerSet
     6 => "seventh",
     7 => "eighth",
     8 => "ninth"
-  }
+  }.freeze
 
   def initialize(args)
     @players = args[:players]
