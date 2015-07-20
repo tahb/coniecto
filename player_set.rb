@@ -23,35 +23,8 @@ class PlayerSet
     @amount = players.count
   end
 
-  def amount
-    players.count
-  end
-
   def balance
     players << add_bot if amount == 1
-  end
-
-  def prioritised_players
-    @prioritised_players ||= players.sort{ |a,b| a.priority <=> b.priority }
-  end
-
-  def guesses(limit)
-    prioritised_players.inject([]) do |array, player|
-      array << Guess.new(player: player, number: player.guess(limit), error_margin: player.error_margin)
-      array
-    end
-  end
-
-  def number_of_prio_questions
-    one_v_one? ? 1 : amount - 1
-  end
-
-  def one_v_one?
-    amount == 2
-  end
-
-  def group?
-    amount > 2
   end
 
   def prioritize
@@ -63,11 +36,31 @@ class PlayerSet
     prioritize_remainder
   end
 
-  def prioritize_remainder
-    return if remaining_players.empty?
-    remaining_players.each do |player|
-      player.priority = amount
+  def guesses(limit)
+    prioritised_players.inject([]) do |array, player|
+      array << Guess.new(player: player, number: player.guess(limit), error_margin: player.error_margin)
+      array
     end
+  end
+
+  private def amount
+    players.count
+  end
+
+  private def number_of_prio_questions
+    one_v_one? ? 1 : amount - 1
+  end
+
+  private def one_v_one?
+    amount == 2
+  end
+
+  private def group?
+    amount > 2
+  end
+
+  private def prioritised_players
+    @prioritised_players ||= players.sort{ |a,b| a.priority <=> b.priority }
   end
 
   private def ask_question(question_number)
@@ -97,6 +90,13 @@ class PlayerSet
 
   private def add_bot
     Bot.new(name: Faker::Name.name, rank: Random.rand(5))
+  end
+
+  private def prioritize_remainder
+    return if remaining_players.empty?
+    remaining_players.each do |player|
+      player.priority = amount
+    end
   end
 
 end
