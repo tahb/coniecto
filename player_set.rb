@@ -1,18 +1,9 @@
-require 'faker'
-
 class PlayerSet
 
   attr_accessor :players
 
   def initialize(args)
     @players = args[:players]
-    @amount = players.count
-  end
-
-  def balance
-    players << add_bot if amount == 1
-  end
-
   end
 
   def guesses(limit)
@@ -22,7 +13,4 @@ class PlayerSet
     end
   end
 
-  private def add_bot
-    Bot.new(name: Faker::Name.name, rank: Random.rand(5))
-  end
 end
