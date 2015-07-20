@@ -2,7 +2,7 @@ class Question
 
   def self.print(message:, prompt: ">>", &blk)
     puts message
-    yield
+    yield if block_given?
     puts prompt
   end
 
