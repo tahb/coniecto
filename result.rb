@@ -23,8 +23,8 @@ class Result
 
   private def calculate_winners
     guesses.each do |guess|
-      by_match << guess if guess.number == target
-      by_margin << guess if guess.full_range.include?(target)
+      set_matching(guess)
+      set_marginal(guess)
       set_closest(guess)
     end
   end
@@ -34,23 +34,46 @@ class Result
     (target - guess.number) < (target - by_closest.number)
   end
 
+  private def set_matching(guess)
+    by_matching << guess if guess.number == target
+  end
+
+  private def set_marginal(guess)
+    by_marginal << guess if guess.full_range.include?(target)
+  end
+
   # Ew.
   private def set_closest(guess)
 
     if by_closest.empty? or by_closest.nil?
-      @by_closest = [ guess ]
+      set_closet(guess)
     else
-      new_diff = target - guess.number
-      old_diff = target - by_closest.first.number
+      new_difference = difference_to_target(guess.number)
+      previous_difference = difference_to_target(by_closest.first.number)
 
-      @by_closest << guess if new_diff == old_diff
-      @by_closest = [ guess ] if new_diff < old_diff
+      set_closet(guess) if new_difference < previous_difference
+      add_closest(guess) if new_difference == previous_difference
     end
+  end
 
+  private def set_closet(guess)
+    @by_closest = [ guess ]
+  end
+
+  private def add_closest(guess)
+    by_closest << guess
   end
 
   private def target
     game.target
+  end
+
+  private def difference_to_target(number)
+    if number > target
+      number - target
+    else
+      target - number
+    end
   end
 
 end
