@@ -10,6 +10,7 @@ class Game
     @player_set = PlayerSet.new(players: args[:players])
     @player_set.balance # Balancer.call(player_set: []) - quack so it can balance anything
     @player_set.prioritize # Prioitizer.call(player_set: [])
+    @player_set.players = Prioritizer.new({ entities: @player_set.players }).call
   end
 
   def play
