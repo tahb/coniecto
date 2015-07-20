@@ -2,7 +2,7 @@ class Prioritizer
 
   attr_accessor :entities
 
-  # How do we even do words here to handle more players.
+  # TODO - Find a library or a way to make this problem dissappear.
   TURNS = {
     0 => "first",
     1 => "second",
