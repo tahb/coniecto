@@ -1,38 +1,50 @@
-# Coniecto (Guess)
+# Coniecto (Guess) game
 
 Multiplayer guess the number.
 
-## Wat?
+## Why is this a thing?
 
-After reading into some different approaches to OO design, I threw this game together without a preconcieved idea just to see how the approach of small objects and depenency management would handle constant change.
+After reading Sandi Metz's book on OO design, I threw this game together as a toy project.
 
-Turns out it was great fun and easy.
+The point was that there was no preconcieved idea in order to see how the approach of small objects and depenency management would handle constant change (as I worked out how it would work along the way).
 
-(Certainly some areas I didn't manage to finish or round off)
+Turns out it was flexible and great fun, reminded me of why I love programming. I did end up metaprogramming some bits and over engineering others just to practice :satisfied:
 
-## Have a try
 
-First make sure you have and are running Ruby 2.2.0.
+## Have a quick try
+
+First make sure you have and are running with Ruby 2.2.0 available.
+
+Then simply start IRB and it will kick off an example game automatically.
 
 ```
 $ irb
 ```
 
-To play a quick game
-```
-$ GameMaster.example
-```
+## How to win?
 
-Customise your own game by specifying the players involved and the maximum guessable number.
+You can win in three ways which are mutually exclusive in this order:
 
-Don't worry if you're on your own, you can play against a bot!
+1. By guessing the number exactly right
+2. By guessing a number within your margin, this is determined by your rank (see ranks below)
+3. By simply being the player who guessed the closest to the number overall
+
+## Make your own
+
+Customise your own game by specifying the following:
+
+`players` The humans involved and ready to play
+
+`limit` The maximum guessable number
+
+
+Don't worry if you're on your own, it will auto populate bots who you can play against!
 
 ```
 $   game = Game.new(
       players: [
         Human.new(name: "Tom", rank: 1),
-        Human.new(name: "Mark", rank: 2),
-        Bot.new(name: "BoB", rank: 3),
+        Human.new(name: "Mark", rank: 2)
       ],
       limit: 125
     )
