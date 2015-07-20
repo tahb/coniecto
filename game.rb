@@ -8,8 +8,8 @@ class Game
     @target = Random.rand(@limit)
 
     @player_set = PlayerSet.new(players: args[:players])
-    @player_set.players = Balancer.new({ entities: @player_set.players }).call
-    @player_set.players = Prioritizer.new({ entities: @player_set.players }).call
+    @player_set.players = Balancer.new(entities: @player_set.players).call
+    @player_set.players = Prioritizer.new(entities: @player_set.players).call
   end
 
   def play
