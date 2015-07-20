@@ -9,3 +9,5 @@ require "./human.rb"
 require "./player_set.rb"
 require "./result.rb"
 require "./game_master.rb"
+
+GameMaster.example

@@ -20,5 +20,5 @@ class GameMaster
       limit: 125
     ).play
   end
-end
 
+end

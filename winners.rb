@@ -1,3 +1,5 @@
+require 'active_support/inflector'
+
 class Winners
 
   attr_reader :type, :guesses
@@ -9,9 +11,9 @@ class Winners
 
   def print
     case type
-    when :by_match then puts "The winner by direct match is: "
-    when :by_margin then puts "The winner by match is: "
-    when :by_closest then puts "The winner by closest is: "
+    when :by_match then puts "The winner by direct match: "
+    when :by_margin then puts "The #{ "winner".pluralize } by marginal match: "
+    when :by_closest then puts "The #{ "winner".pluralize } by closest: "
     else end
 
     guesses.each{ |guess| puts guess.player.name }

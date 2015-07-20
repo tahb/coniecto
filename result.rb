@@ -1,6 +1,6 @@
 class Result
   attr_reader :guesses, :game
-  attr_accessor :by_match, :by_margin, :by_closest, :by_closest
+  attr_accessor :by_match, :by_margin, :by_closest
 
   WINNING_ORDER = [ :by_match, :by_margin, :by_closest ].freeze
 
@@ -35,15 +35,15 @@ class Result
 
   # Ew.
   private def set_closest(guess)
-    if by_closest.empty?
-      by_closest << guess
-      return true
+
+    if by_closest.empty? or by_closest.nil?
+      @by_closest = [ guess ]
     else
       new_diff = target - guess.number
       old_diff = target - by_closest.first.number
 
-      by_closest << guess if new_diff == old_diff
-      by_closest = [ guess ] if new_diff < old_diff
+      @by_closest << guess if new_diff == old_diff
+      @by_closest = [ guess ] if new_diff < old_diff
     end
 
   end
