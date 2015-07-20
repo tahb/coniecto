@@ -11,8 +11,8 @@ class Winners
 
   def print
     case type
-    when :by_match then puts "The winner by direct match: "
-    when :by_margin then puts "The #{ "winner".pluralize } by marginal match: "
+    when :by_matching then puts "The winner by direct match: "
+    when :by_marginal then puts "The #{ "winner".pluralize } by marginal match: "
     when :by_closest then puts "The #{ "winner".pluralize } by closest: "
     else end
 

@@ -1,14 +1,15 @@
 class Result
   attr_reader :guesses, :game
-  attr_accessor :by_match, :by_margin, :by_closest
+  attr_accessor :by_matching, :by_marginal, :by_closest
 
-  WINNING_ORDER = [ :by_match, :by_margin, :by_closest ].freeze
+  WINNING_ORDER = [ :by_matching, :by_marginal, :by_closest ].freeze
 
   def initialize(args)
     @guesses = args[:guesses] || []
     @game = args[:game]
-    @by_match = []
-    @by_margin = []
+
+    @by_matching = []
+    @by_marginal = []
     @by_closest = []
 
     calculate_winners
