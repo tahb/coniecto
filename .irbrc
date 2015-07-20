@@ -1,3 +1,4 @@
+require "./question.rb"
 require "./prioritizer.rb"
 require "./balancer.rb"
 require "./winners.rb"

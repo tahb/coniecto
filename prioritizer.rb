@@ -21,7 +21,7 @@ class Prioritizer
   end
 
   def call
-    ask_questions
+    ask_all_questions
     automatically_prioritize_remainder
 
     return prioritised_entities
@@ -43,10 +43,14 @@ class Prioritizer
     entities.count
   end
 
-  private def ask_questions
-    number_of_questions.times do |question_number|
-      ask_question(question_number)
-      set_answer(question_number)
+  private def ask_all_questions
+    number_of_questions.times do |question|
+      answer = ask_question(
+        question: question,
+        message: "What's the name of who should go #{ TURNS[question] }..",
+        answer: nil
+      )
+      set_answer(question, answer)
     end
   end
 
@@ -60,30 +64,38 @@ class Prioritizer
 
   private def automatically_prioritize_remainder
     return if remaining_entities.empty?
-    remaining_entities.each do |player|
-      player.priority = amount
+    remaining_entities.each do |entity|
+      entity.priority = amount
     end
   end
 
-  private def ask_question(question_number)
-    print_question(TURNS[question_number])
+  private def ask_question(question:, message:, answer: nil)
+    return answer unless answer.nil?
+
+    Question.print(message: message){ options }
+
+    ask_question(
+      question: question,
+      message: "Sorry, we that entity name didn't match. Try again, who should go #{ TURNS[question] }..",
+      answer: entity_found_for(gets.chomp)
+    )
   end
 
-  private def print_question(turn="first")
-    puts "What's the name of who should go #{turn}.."
-    remaining_entities.each_with_index do |player, index|
-      puts "#{index + 1}: #{player.name}"
+  private def options
+    remaining_entities.each_with_index do |entity, index|
+      puts "#{index + 1}: #{entity.name}"
     end
-    puts ">>"
   end
 
-  private def set_answer(question_number)
-    chosen_name = gets.chomp
+  private def set_answer(question, answer)
+    entity = entities.select{ |p| p.name.eql?(answer) }.first
+    entity.set_priority(question)
 
-    player = entities.select{ |p| p.name.eql?(chosen_name) }.first
-    player.set_priority(question_number)
+    puts "Decided! #{entity.name} goes #{TURNS[question]}."
+  end
 
-    puts "Decided! #{player.name} goes #{TURNS[question_number]}."
+  private def entity_found_for(name)
+    return name if entities.select{ |e| e.name.eql?(name) }.first
   end
 
 end
