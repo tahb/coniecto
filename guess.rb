@@ -7,16 +7,16 @@ class Guess
     @error_margin = args[:error_margin]
   end
 
-  def upper
+  def full_range
+    Range.new(lower, upper)
+  end
+
+  private def upper
     number + error_margin
   end
 
-  def lower
+  private def lower
     number - error_margin
-  end
-
-  def full_range
-    Range.new(lower, upper)
   end
 
 end
