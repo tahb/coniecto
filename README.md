@@ -8,7 +8,7 @@ After reading Sandi Metz's book on OO design, I threw this game together as a to
 
 The point was that there was no preconcieved idea in order to see how the approach of small objects and depenency management would handle constant change (as I worked out how it would work along the way).
 
-Turns out it was flexible and great fun, reminded me of why I love programming. I did end up metaprogramming some bits and over engineering others just to practice :satisfied:
+Turns out it was flexible and great fun, reminded me of why I love programming. I did end up over engineering others just to practice and satisfied feels.
 
 
 ## Have a quick try
