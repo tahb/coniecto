@@ -8,14 +8,14 @@ After reading Sandi Metz's book on OO design, I threw this game together as a to
 
 The point was that there was no preconcieved idea in order to see how the approach of small objects and depenency management would handle constant change (as I worked out how it would work along the way).
 
-Turns out it was flexible and great fun, reminded me of why I love programming. I did end up over engineering others just to practice and satisfied feels.
+Turns out it was flexible and great fun.
 
 
 ## Have a quick try
 
 First make sure you have and are running with Ruby 2.2.0 available.
 
-Then simply start IRB and it will kick off an example game automatically.
+Then simply start irb and it will kick off an example game.
 
 ```
 $ irb
