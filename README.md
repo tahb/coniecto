@@ -1,21 +1,15 @@
 # Coniecto (Guess) game
 
-Multiplayer guess the number.
+Multiplayer command line game to guess the number.
 
-## Why is this a thing?
-
-After reading Sandi Metz's book on OO design, I threw this game together as a toy project.
-
-The point was that there was no preconcieved idea in order to see how the approach of small objects and depenency management would handle constant change (as I worked out how it would work along the way).
-
-Turns out it was flexible and great fun.
+Toy project to practice building smaller objects.
 
 
 ## Have a quick try
 
-First make sure you have and are running with Ruby 2.2.0 available.
+First make sure you have Ruby 2.2.0
 
-Then simply start irb and it will kick off an example game.
+Then start irb and it will kick off an example game.
 
 ```
 $ irb
